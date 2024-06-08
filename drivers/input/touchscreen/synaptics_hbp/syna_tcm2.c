@@ -599,9 +599,9 @@ static void syna_dev_report_input_events(struct syna_tcm *tcm)
 				tcm->is_fp_down = false;
 				LOGI("screen off fingerprint up\n");
 			} else {
-				input_report_key(input_dev, KEY_F4, 1);
+				input_report_key(input_dev, KEY_WAKEUP, 1);
 				input_sync(input_dev);
-				input_report_key(input_dev, KEY_F4, 0);
+				input_report_key(input_dev, KEY_WAKEUP, 0);
 				input_sync(input_dev);
 			}
 		}
@@ -758,8 +758,8 @@ static int syna_dev_create_input_device(struct syna_tcm *tcm)
 
 	set_bit(KEY_SLEEP, input_dev->keybit);
 #ifdef ENABLE_WAKEUP_GESTURE
-	set_bit(KEY_F4, input_dev->keybit);
-	input_set_capability(input_dev, EV_KEY, KEY_F4);
+	set_bit(KEY_WAKEUP, input_dev->keybit);
+	input_set_capability(input_dev, EV_KEY, KEY_WAKEUP);
 #endif
 
 	input_set_abs_params(input_dev,
