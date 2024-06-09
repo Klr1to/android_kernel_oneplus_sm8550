@@ -598,10 +598,15 @@ static void syna_dev_report_input_events(struct syna_tcm *tcm)
 					   (void *)&event_data);
 				tcm->is_fp_down = false;
 				LOGI("screen off fingerprint up\n");
-			} else {
+			} else if (touch_data->gesture_id == DTAP_DETECT) {
 				input_report_key(input_dev, KEY_WAKEUP, 1);
 				input_sync(input_dev);
 				input_report_key(input_dev, KEY_WAKEUP, 0);
+				input_sync(input_dev);
+			} else {
+				input_report_key(input_dev, KEY_F4, 1); 
+				input_sync(input_dev);
+				input_report_key(input_dev, KEY_F4, 0);
 				input_sync(input_dev);
 			}
 		}
