@@ -2157,6 +2157,13 @@ config SALAMI_DTB
 	help
 	  Only include Oplus salami device specific device tree.
 
+config ASTON_DTB
+	select OPLUS_DEVICE_DTBS
+	default n
+	bool "Oplus aston device DTB"
+	help
+	  Only include Oplus aston device specific device tree. 
+
 endmenu
 
 config SYSVIPC_COMPAT
